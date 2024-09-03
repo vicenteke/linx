@@ -1,0 +1,23 @@
+services:
+  linx_web:
+    image: linx_web 
+    container_name: linx_web
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: devel
+    env_file: ./.env.development
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    networks:
+      - linx_network
+networks:
+  linx_network:
+    name: linx_network
+    external: false      
