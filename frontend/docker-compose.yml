@@ -6,10 +6,11 @@ services:
       context: .
       dockerfile: Dockerfile
       target: devel
-    env_file: ./.env.development
+    env_file: .env.development
     volumes:
       - '.:/app'
       - '/app/node_modules'
+      - './.env.development:/.env.development'
     ports:
       - '3000:3000'
     environment:

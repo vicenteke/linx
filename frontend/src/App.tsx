@@ -1,38 +1,32 @@
-import * as React from "react"
 import {
-  ChakraProvider,
   Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+  ChakraProvider,
+  Stack,
+} from "@chakra-ui/react";
+import theme from "./theme";
+import { ForecastsProvider } from "./hooks/forecasts";
+import SearchInput from "./components/SearchInput";
+import Forecasts from "./components/Forecasts";
+import WeatherCard from "./components/WeatherCard";
+
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
-    </Box>
+    <ForecastsProvider>
+      <Box
+        display='flex'
+        flexDirection={{ base: 'column', md: 'row' }}
+        minHeight='100vh'
+        minWidth='100vw'
+        justifyContent='space-between'
+        padding='10px'
+      >
+        <Stack spacing={10} padding='70px' minWidth='1050px'>
+          <SearchInput />
+          <Forecasts />
+        </Stack>
+        <WeatherCard />
+      </Box>
+    </ForecastsProvider>
   </ChakraProvider>
 )
