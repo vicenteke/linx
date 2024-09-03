@@ -1,9 +1,5 @@
 from sqlalchemy import (
-    SmallInteger,
     Column,
-    DateTime,
-    Float,
-    TIMESTAMP,
     UniqueConstraint,
     VARCHAR
 )

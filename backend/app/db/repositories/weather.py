@@ -14,7 +14,7 @@ class WeatherRepository(Repository):
     def _get_or_clear_existing_entries(self, city: str):
         """Check for existing entries on DB to avoid inconsistencies"""
         initial_date = datetime.now()
-        final_date = initial_date + timedelta(days=4)
+        final_date = initial_date + timedelta(days=5)
 
         entries = self.query(city=city)\
             .filter(self.model.forecast_date >= initial_date)\
